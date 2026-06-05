@@ -1,0 +1,34 @@
+name: Validate Teams manifest
+
+on:
+  push:
+    paths:
+      - 'manifest/**'
+  pull_request:
+    paths:
+      - 'manifest/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate manifest schema
+        run: |
+          npm install -g ajv-cli@5
+          curl -sL "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json" -o /tmp/teams-schema.json
+          ajv validate -s /tmp/teams-schema.json -d manifest/manifest.json
+      - name: Check icon dimensions
+        run: |
+          npm install -g jimp
+          node -e "
+          const Jimp = require('jimp');
+          Promise.all([
+            Jimp.read('manifest/color.png').then(img => { if(img.getWidth()!==192||img.getHeight()!==192) throw new Error('color.png must be 192x192'); console.log('color.png OK'); }),
+            Jimp.read('manifest/outline.png').then(img => { if(img.getWidth()!==32||img.getHeight()!==32) throw new Error('outline.png must be 32x32'); console.log('outline.png OK'); })
+          ]).catch(e => { console.error(e.message); process.exit(1); });
+          "

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json",
+  "actions": [
+    {
+      "verb": "createSPList",
+      "listName": "Faktury",
+      "templateType": 100,
+      "subactions": [
+        {
+          "verb": "setTitle",
+          "title": "Faktury"
+        },
+        {
+          "verb": "setDescription",
+          "description": "Evidence faktur Faktury 365"
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "Note",
+          "displayName": "Zákazník",
+          "internalName": "Customer",
+          "isRequired": false,
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "Currency",
+          "displayName": "Částka (Kč)",
+          "internalName": "Amount",
+          "isRequired": false,
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "DateTime",
+          "displayName": "Datum vystavení",
+          "internalName": "IssueDate",
+          "isRequired": false,
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "DateTime",
+          "displayName": "Datum splatnosti",
+          "internalName": "DueDate",
+          "isRequired": false,
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type='Choice' DisplayName='Stav' Name='Status' Required='TRUE'><Default>Návrh</Default><CHOICES><CHOICE>Návrh</CHOICE><CHOICE>Odesláno</CHOICE><CHOICE>Zaplaceno</CHOICE><CHOICE>Po splatnosti</CHOICE><CHOICE>Stornováno</CHOICE></CHOICES></Field>",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "DateTime",
+          "displayName": "Datum platby",
+          "internalName": "PaidDate",
+          "isRequired": false,
+          "addToDefaultView": false
+        },
+        {
+          "verb": "addSPField",
+          "fieldType": "Note",
+          "displayName": "Poznámky",
+          "internalName": "Notes",
+          "isRequired": false,
+          "addToDefaultView": false
+        },
+        {
+          "verb": "setView",
+          "name": "All Items",
+          "viewFields": [
+            "LinkTitle",
+            "Customer",
+            "Amount",
+            "IssueDate",
+            "DueDate",
+            "Status"
+          ],
+          "query": ""
+        },
+        {
+          "verb": "addSPView",
+          "name": "Nezaplaceno",
+          "viewFields": [
+            "LinkTitle",
+            "Customer",
+            "Amount",
+            "DueDate",
+            "Status"
+          ],
+          "query": "<Where><In><FieldRef Name='Status'/><Values><Value Type='Choice'>Odesláno</Value><Value Type='Choice'>Po splatnosti</Value></Values></In></Where>",
+          "isPaged": true,
+          "rowLimit": 100
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

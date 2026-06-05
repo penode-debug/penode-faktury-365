@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.17",
+  "version": "0.1.0",
+  "id": "9b1e1f3a-7e9c-4a6f-9c8a-f3a7e6b5d2c1",
+  "packageName": "com.penode.faktury365",
+  "developer": {
+    "name": "Penode",
+    "websiteUrl": "https://penode365.com",
+    "privacyUrl": "https://penode365.com/privacy",
+    "termsOfUseUrl": "https://penode365.com/support"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Faktury 365",
+    "full": "Faktury 365 — Automatizujte fakturaci v Microsoft 365"
+  },
+  "description": {
+    "short": "Automatizujte fakturaci v Microsoft 365.",
+    "full": "Faktury 365 je krabicová aplikace pro malé a střední firmy, která zjednodušuje správu faktur přímo v Microsoft 365. Vytvoří strukturovaný SharePoint seznam ve vašem tenantu a poskytne přehledný dashboard přímo v Microsoft Teams. Žádný externí backend, žádné runtime náklady — vaše data zůstávají ve vašem M365."
+  },
+  "accentColor": "#1D4ED8",
+  "staticTabs": [
+    {
+      "entityId": "faktury365-dashboard",
+      "name": "Faktury",
+      "contentUrl": "https://penode365.com/apps/faktury-365",
+      "websiteUrl": "https://penode365.com/products/faktury-365",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "permissions": [
+    "identity"
+  ],
+  "validDomains": [
+    "penode365.com",
+    "*.sharepoint.com"
+  ],
+  "webApplicationInfo": {
+    "id": "REPLACE_WITH_ENTRA_APP_ID",
+    "resource": "api://penode365.com/REPLACE_WITH_ENTRA_APP_ID"
+  }
+}
