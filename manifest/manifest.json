@@ -42,7 +42,7 @@
     "*.sharepoint.com"
   ],
   "webApplicationInfo": {
-    "id": "REPLACE_WITH_ENTRA_APP_ID",
-    "resource": "api://penode365.com/REPLACE_WITH_ENTRA_APP_ID"
+    "id": "8cf13a7b-4fef-49ac-8dee-7e2172ae8a8f",
+    "resource": "api://8cf13a7b-4fef-49ac-8dee-7e2172ae8a8f"
   }
 }
